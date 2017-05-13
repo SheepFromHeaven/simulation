@@ -1,12 +1,42 @@
 {
-  "name": "simulation",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "webpack-ts-boilerplate",
+  "version": "0.1.0",
   "license": "MIT",
   "devDependencies": {
+    "@types/chai": "^3.5.2",
+    "@types/mocha": "^2.2.41",
+    "@types/sinon": "^2.2.1",
     "babel-loader": "^7.0.0",
+    "chai": "^3.5.0",
+    "chai-sinon": "^2.8.1",
+    "mocha": "^3.3.0",
+    "nyc": "^10.3.2",
+    "sinon": "^2.2.0",
     "ts-loader": "^2.0.3",
+    "ts-node": "^3.0.4",
     "typescript": "^2.3.2",
     "webpack": "^2.5.1"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/mocha --opts mocha.opts",
+    "coverage": "node_modules/.bin/nyc node_modules/.bin/mocha --opts mocha.opts"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "src/**/*.spec.ts"
+    ],
+    "reporter": [
+      "html"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "cache": true,
+    "all": true,
+    "report-dir": "./coverage"
   }
 }
