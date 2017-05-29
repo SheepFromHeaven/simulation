@@ -1,3 +1,4 @@
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
 const webpack = require('webpack');
 
@@ -42,15 +43,10 @@ module.exports = {
         fs: 'empty'
     },
 
-    devServer: {
-        contentBase: path.join(__dirname, ''),
-        compress: true,
-        port: 9000,
-        hot: true
-    },
-
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
+        new BundleAnalyzerPlugin({
+            analyzerMode: 'static'
+        }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'node-static',
             filename: 'node-static.js',
@@ -58,6 +54,9 @@ module.exports = {
                 var context = module.context;
                 return context && context.indexOf('node_modules') >= 0;
             }
+        }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('production')
         })
     ]
 };

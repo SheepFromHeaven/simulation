@@ -1,14 +1,24 @@
 import 'pixi';
 import 'p2';
 import * as Phaser from 'phaser';
+import SimulationFactory from './SimulationFactory';
+import {Factory} from './Factory';
+import {Entity} from './Entity';
+import {EntityManager} from './EntityManager';
 
 class App {
 
-    constructor() {
-        this.game = new Phaser.Game(window.outerWidth, window.outerHeight, Phaser.AUTO, 'content', { preload: this.preload, create: this.create });
-    }
-
     game: Phaser.Game;
+    factory: Factory;
+    globalEntityManager: EntityManager;
+
+    constructor(factory: Factory) {
+        this.factory = factory;
+        this.globalEntityManager = this.factory.getGlobalEntityManager();
+        this.globalEntityManager.registerEntity(new Entity);
+        this.game = new Phaser.Game(window.outerWidth, window.outerHeight, Phaser.AUTO, 'content', { preload: this.preload, create: this.create });
+        console.log(this.globalEntityManager.getAllEntities());
+    }
 
     preload() {
 
@@ -17,11 +27,10 @@ class App {
     create() {
 
     }
-
 }
 
 window.onload = () => {
 
-    let game = new App();
+    let game = new App(new SimulationFactory());
 
 };
