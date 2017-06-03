@@ -2,9 +2,9 @@ import 'pixi';
 import 'p2';
 import * as Phaser from 'phaser';
 import SimulationFactory from './SimulationFactory';
-import {Factory} from './Factory';
-import {Entity} from './Entity';
-import {EntityManager} from './EntityManager';
+import {Factory} from './interfaces/Factory';
+import {Entity} from './models/Entity';
+import {EntityManager} from './interfaces/EntityManager';
 
 class App {
 

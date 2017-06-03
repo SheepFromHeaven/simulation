@@ -1,6 +1,6 @@
-import {Factory} from './Factory';
-import {EntityManager} from './EntityManager';
-import GlobalEntityManager from './GlobalEntityManager';
+import {Factory} from './interfaces/Factory';
+import {EntityManager} from './interfaces/EntityManager';
+import GlobalEntityManager from './manager/GlobalEntityManager';
 
 export default class SimulationFactory implements Factory {
     globalEntityManager: EntityManager = null;

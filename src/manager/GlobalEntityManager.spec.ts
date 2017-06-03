@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import GlobalEntityManager from './GlobalEntityManager';
-import {Entity} from './Entity';
+import {Entity} from '../models/Entity';
 
 let globalEntityManager;
 

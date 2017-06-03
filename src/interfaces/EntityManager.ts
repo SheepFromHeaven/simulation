@@ -1,4 +1,4 @@
-import {Entity} from './Entity';
+import {Entity} from '../models/Entity';
 
 export interface EntityManager {
     registerEntity: (Entity) => void,

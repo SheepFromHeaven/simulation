@@ -1,5 +1,5 @@
-import {EntityManager} from './EntityManager';
-import {Entity} from './Entity';
+import {EntityManager} from '../interfaces/EntityManager';
+import {Entity} from '../models/Entity';
 
 export default class GlobalEntityManager implements EntityManager {
     private entities: Entity[] = [];
