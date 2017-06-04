@@ -20,7 +20,7 @@ describe('Global Entity Manager', () => {
         expect(newEntity.id).to.equal(0);
     });
 
-    it('doesnt register a existing entity', () => {
+    it('doesnt register an existing entity', () => {
         let newEntity = new Entity();
 
         expect(globalEntityManager.entities).to.have.lengthOf(0);
