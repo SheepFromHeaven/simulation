@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import {StorageModule} from './StorageModule';
 import {RESOURCE_TYPE} from '../types/RESOURCE_TYPES';
 
-describe.only('Storage Module', () => {
+describe('Storage Module', () => {
 
     let storageModule: StorageModule;
 
