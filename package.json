@@ -23,7 +23,7 @@
     "webpack-dev-server": "^2.4.5"
   },
   "scripts": {
-    "start": "yarn coverage && node_modules/.bin/webpack-dev-server",
+    "start": "npm run coverage && node_modules/.bin/webpack-dev-server",
     "build": "node_modules/.bin/webpack --config webpack.production.config.js",
     "test": "node_modules/.bin/mocha --opts mocha.opts",
     "coverage": "node_modules/.bin/nyc node_modules/.bin/mocha --opts mocha.opts"
@@ -44,5 +44,9 @@
     "cache": true,
     "all": true,
     "report-dir": "./coverage"
+  },
+  "dependencies": {
+    "redux": "^3.7.1",
+    "redux-devtools-extension": "^2.13.2"
   }
 }

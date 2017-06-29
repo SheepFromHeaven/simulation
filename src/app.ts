@@ -1,36 +1,41 @@
 import 'pixi';
 import 'p2';
 import * as Phaser from 'phaser';
-import SimulationFactory from './SimulationFactory';
-import {Factory} from './interfaces/Factory';
-import {Entity} from './models/Entity';
-import {EntityManager} from './interfaces/EntityManager';
+import {createStore, applyMiddleware, combineReducers} from 'redux';
+import {getInitialState} from './state/state';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import {buildings} from './reducers/buildings.reducer';
 
-class App {
-
-    game: Phaser.Game;
-    factory: Factory;
-    globalEntityManager: EntityManager;
-
-    constructor(factory: Factory) {
-        this.factory = factory;
-        this.globalEntityManager = this.factory.getGlobalEntityManager();
-        this.globalEntityManager.registerEntity(new Entity);
-        this.game = new Phaser.Game(window.outerWidth, window.outerHeight, Phaser.AUTO, 'content', { preload: this.preload, create: this.create });
-        console.log(this.globalEntityManager.getAllEntities());
+const start = (graphics: boolean) => {
+    let reducers = combineReducers({
+        buildings
+    });
+    let store = createStore(reducers, getInitialState(), composeWithDevTools(applyMiddleware()));
+    let game;
+    if (graphics) {
+        game = new Phaser.Game(window.outerWidth, window.outerHeight, Phaser.AUTO, 'content', { preload: phaserPreload, create: phaserCreate });
     }
+    startUpdateLoop(store, game, 1000);
+};
 
-    preload() {
+const startUpdateLoop = (store, game: Phaser.Game, interval: number) => {
+    setInterval(update.bind(this, store, game), interval);
+};
 
-    }
+const update = (store, game: Phaser.Game) => {
 
-    create() {
+};
 
-    }
-}
+const phaserPreload = () => {
+
+};
+
+const phaserCreate = () => {
+
+};
 
 window.onload = () => {
 
-    let game = new App(new SimulationFactory());
+    start(false);
 
 };
