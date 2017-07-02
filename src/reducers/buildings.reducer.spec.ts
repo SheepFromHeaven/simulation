@@ -11,7 +11,7 @@ describe('Building reducer', () => {
     });
 
     it('handles addBuilding action state', () => {
-        expect(buildings(undefined, addBuilding(blueprints[0]))).to.deep.equal([
+        expect(buildings(undefined, addBuilding(blueprints[BUILDING_TYPE.MAIN]))).to.deep.equal([
             {
                 id: 0,
                 type: BUILDING_TYPE.MAIN
@@ -20,7 +20,7 @@ describe('Building reducer', () => {
     });
 
     it('increments building ids', () => {
-        let firstState = buildings(getInitialState().buildings, addBuilding(blueprints[0]));
-        expect(buildings(firstState, addBuilding(blueprints[0]))[1].id).to.deep.equal(1);
+        let firstState = buildings(getInitialState().buildings, addBuilding(blueprints[BUILDING_TYPE.MAIN]));
+        expect(buildings(firstState, addBuilding(blueprints[BUILDING_TYPE.MAIN]))[1].id).to.deep.equal(1);
     });
 });

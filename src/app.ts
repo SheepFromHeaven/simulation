@@ -54,12 +54,22 @@ window.onload = () => {
 };
 
 const buildInitialBuildings = (store, blueprint: Blueprint) => {
-    store.dispatch(removeResource(blueprint.cost));
-    store.dispatch(addBuilding(blueprint));
+    if(store.getState().resources[blueprint.cost.type] >= blueprint.cost.amount) {
+        build(store, blueprint);
+    }
 };
+
 
 const fillInitialStorage = (store, resources: Resource[]) => {
     resources.forEach(resource => {
         store.dispatch(addResource(resource));
     });
+};
+
+const build = (store, blueprint) => {
+    store.dispatch(removeResource(blueprint.cost));
+    store.dispatch(addBuilding(blueprint));
+    let element = document.createElement('div');
+    element.appendChild(document.createTextNode(blueprint.building.type));
+    document.getElementById('body').appendChild(element);
 };
