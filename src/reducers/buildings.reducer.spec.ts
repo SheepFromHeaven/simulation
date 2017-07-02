@@ -3,6 +3,7 @@ import {buildings} from './buildings.reducer';
 import {BUILDING_TYPE} from '../types/BUILDING_TYPES';
 import {addBuilding} from '../actions/buildings.actions';
 import {getInitialState} from '../state/state';
+import {blueprints} from '../blueprints';
 
 describe('Building reducer', () => {
     it('handles initial state', () => {
@@ -10,7 +11,7 @@ describe('Building reducer', () => {
     });
 
     it('handles addBuilding action state', () => {
-        expect(buildings(undefined, addBuilding(BUILDING_TYPE.MAIN))).to.deep.equal([
+        expect(buildings(undefined, addBuilding(blueprints[BUILDING_TYPE.MAIN]))).to.deep.equal([
             {
                 id: 0,
                 type: BUILDING_TYPE.MAIN
@@ -19,7 +20,7 @@ describe('Building reducer', () => {
     });
 
     it('increments building ids', () => {
-        let firstState = buildings(getInitialState().buildings, addBuilding(BUILDING_TYPE.MAIN));
-        expect(buildings(firstState, addBuilding(BUILDING_TYPE.MAIN))[1].id).to.deep.equal(1);
+        let firstState = buildings(getInitialState().buildings, addBuilding(blueprints[BUILDING_TYPE.MAIN]));
+        expect(buildings(firstState, addBuilding(blueprints[BUILDING_TYPE.MAIN]))[1].id).to.deep.equal(1);
     });
 });

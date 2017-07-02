@@ -1,3 +1,3 @@
-export enum RESOURCE_TYPE {
-    WOOD
-}
+export const RESOURCE_TYPE = {
+    WOOD: 'WOOD'
+};

@@ -10,18 +10,18 @@ describe('Resources reducer', () => {
     });
 
     it('handles addResource action', () => {
-        let newState = resources(getInitialState().resources, addResource(RESOURCE_TYPE.WOOD, 10));
+        let newState = resources(getInitialState().resources, addResource({type: RESOURCE_TYPE.WOOD, amount: 10}));
         expect(newState[RESOURCE_TYPE.WOOD]).to.equal(10);
     });
 
     it('handles addResource action with existing resources', () => {
-        let newState = resources(getInitialState().resources, addResource(RESOURCE_TYPE.WOOD, 10));
-        newState = resources(newState, addResource(RESOURCE_TYPE.WOOD, 10));
+        let newState = resources(getInitialState().resources, addResource({type: RESOURCE_TYPE.WOOD, amount: 10}));
+        newState = resources(newState, addResource({type: RESOURCE_TYPE.WOOD, amount: 10}));
         expect(newState[RESOURCE_TYPE.WOOD]).to.equal(20);
     });
 
     it('handles removeResource action', () => {
-        let filledState = resources(getInitialState().resources, addResource(RESOURCE_TYPE.WOOD, 10));
-        expect(resources(filledState, removeResource(RESOURCE_TYPE.WOOD, 10))[RESOURCE_TYPE.WOOD]).to.equal(0);
+        let filledState = resources(getInitialState().resources, addResource({type: RESOURCE_TYPE.WOOD, amount: 10}));
+        expect(resources(filledState, removeResource({type: RESOURCE_TYPE.WOOD, amount: 10}))[RESOURCE_TYPE.WOOD]).to.equal(0);
     });
 });
