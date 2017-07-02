@@ -1,3 +1,3 @@
-export enum BUILDING_TYPE {
-    MAIN
-}
+export const BUILDING_TYPE = {
+    MAIN: 'MAIN'
+};
