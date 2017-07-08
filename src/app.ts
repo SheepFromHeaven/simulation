@@ -26,7 +26,7 @@ const start = (graphics: boolean) => {
     }
 
     fillInitialStorage(store, [{type: RESOURCE_TYPE.WOOD, amount: 100}]);
-    buildInitialBuildings(store, blueprints[0]);
+    buildInitialBuildings(store, blueprints[BUILDING_TYPE.MAIN]);
 
     startUpdateLoop(store, game, 1000);
 };
@@ -36,7 +36,7 @@ const startUpdateLoop = (store, game: Phaser.Game, interval: number) => {
 };
 
 const update = (store, game: Phaser.Game) => {
-
+    document.getElementById('wood').innerText(store.getState().resources[RESOURCE_TYPE.WOOD].toString());
 };
 
 const phaserPreload = () => {
@@ -71,5 +71,5 @@ const build = (store, blueprint) => {
     store.dispatch(addBuilding(blueprint));
     let element = document.createElement('div');
     element.appendChild(document.createTextNode(blueprint.building.type));
-    document.getElementById('body').appendChild(element);
+    document.getElementById('buildings').appendChild(element);
 };
