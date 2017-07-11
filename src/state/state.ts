@@ -3,7 +3,7 @@ import {Resource} from '../interfaces/Resource';
 import {Entity} from '../interfaces/Entity';
 
 export interface ReduxState {
-    buildings: (Building & Entity)[];
+    buildings: Building[];
     resources: number[];
 }
 
