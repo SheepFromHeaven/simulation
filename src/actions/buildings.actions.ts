@@ -1,7 +1,8 @@
 import {Blueprint} from '../interfaces/Blueprint';
 
 export const BUILDINGS_ACTIONS =  {
-    ADD_BUILDING: 'ADD_BUILDING'
+    ADD_BUILDING: 'ADD_BUILDING',
+    REMOVE_BUILDING: 'REMOVE_BUILDING'
 };
 
 export const addBuilding = (blueprint: Blueprint) => {
@@ -9,6 +10,15 @@ export const addBuilding = (blueprint: Blueprint) => {
         type: BUILDINGS_ACTIONS.ADD_BUILDING,
         payload: {
             blueprint: blueprint
+        }
+    }
+};
+
+export const removeBuilding = (id: number) => {
+    return {
+        type: BUILDINGS_ACTIONS.REMOVE_BUILDING,
+        payload: {
+            id: id
         }
     }
 };
