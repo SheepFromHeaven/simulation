@@ -9,6 +9,7 @@
     "@types/sinon-chai": "^2.7.27",
     "babel-loader": "^7.0.0",
     "chai": "^3.5.0",
+    "eslint": "^4.2.0",
     "expose-loader": "^0.7.3",
     "mocha": "^3.3.0",
     "nyc": "^10.3.2",
