@@ -10,6 +10,7 @@
       "node_modules/phaser/typescript"
     ],
     "target": "es5",
-    "lib": ["ES6", "dom"]
+    "lib": ["ES6", "dom"],
+    "jsx": "react"
   }
 }

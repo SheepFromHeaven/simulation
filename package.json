@@ -5,6 +5,9 @@
   "devDependencies": {
     "@types/chai": "^3.5.2",
     "@types/mocha": "^2.2.42",
+    "@types/ramda": "^0.24.11",
+    "@types/react": "^16.0.5",
+    "@types/react-redux": "^5.0.7",
     "@types/sinon": "^2.3.3",
     "@types/sinon-chai": "^2.7.29",
     "awesome-typescript-loader": "^3.2.3",
@@ -54,6 +57,10 @@
     "report-dir": "./coverage"
   },
   "dependencies": {
+    "ramda": "^0.24.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2"
   }

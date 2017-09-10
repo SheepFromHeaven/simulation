@@ -1,3 +1,4 @@
 export const RESOURCE_TYPE = {
-    WOOD: 'WOOD'
+    WOOD: 'WOOD',
+    STONE: 'STONE'
 };

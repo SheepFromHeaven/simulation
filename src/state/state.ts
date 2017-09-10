@@ -1,13 +1,14 @@
 import {Building} from '../interfaces/Building';
+import {getInitialResourceState, ResourceState} from './ResourceState';
 
-export interface ReduxState {
+export interface ApplicationState {
     buildings: Building[];
-    resources: number[];
+    resources: ResourceState;
 }
 
-export const getInitialState = (): ReduxState => {
+export const getInitialState = (): ApplicationState => {
     return {
         buildings: [],
-        resources: []
+        resources: getInitialResourceState()
     }
 };

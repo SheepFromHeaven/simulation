@@ -21,7 +21,7 @@ module.exports = new Config().merge({
             'node_modules',
             path.resolve(__dirname, 'src')
         ],
-        extensions: ['.ts', '.js']
+        extensions: ['.tsx', '.ts', '.js']
     },
     module: {
         rules: [
@@ -38,7 +38,7 @@ module.exports = new Config().merge({
                 })
             },
             {
-                test: /\.ts$/,
+                test: /\.(ts|tsx)$/,
                 loader: 'awesome-typescript-loader',
             }
         ]

@@ -1,7 +1,4 @@
-import {createStore, applyMiddleware, combineReducers} from 'redux';
 import {getInitialState} from './state/state';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import {buildings} from './reducers/buildings.reducer';
 import {addBuilding} from './actions/buildings.actions';
 import {BUILDING_TYPE} from './types/BUILDING_TYPES';
 import {blueprints} from './blueprints';
@@ -9,17 +6,17 @@ import {addResource, removeResource} from './actions/resources.actions';
 import {Blueprint} from './interfaces/Blueprint';
 import {Resource} from './interfaces/Resource';
 import {RESOURCE_TYPE} from './types/RESOURCE_TYPES';
-import {resources} from './reducers/resources.reducer';
+import {initReactApp} from './react-init';
+import {createReduxApplicationStore} from './redux-init';
+
 
 const start = () => {
-    let reducers = combineReducers({
-        buildings,
-        resources
-    });
-    let store = createStore(reducers, getInitialState(), composeWithDevTools(applyMiddleware()));
+    const store = createReduxApplicationStore(getInitialState());
 
     fillInitialStorage(store, [{type: RESOURCE_TYPE.WOOD, amount: 9}]);
     buildInitialBuildings(store, blueprints[BUILDING_TYPE.MAIN]);
+
+    initReactApp('react-app', store);
 
     startUpdateLoop(store, 1000);
 };
