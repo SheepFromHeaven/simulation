@@ -1,5 +1,6 @@
-import {Entity} from './Entity';
+import {Production} from './Production';
 
-export interface Building extends Entity{
+export interface Building {
     type: string;
+    productions: Production[]
 }

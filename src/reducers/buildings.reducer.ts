@@ -3,6 +3,7 @@ import {BuildingState, generateBuildingId, getInitialBuildingState} from '../sta
 import {Blueprint} from '../interfaces/Blueprint';
 import {Building} from '../interfaces/Building';
 import {dissoc, remove} from 'ramda';
+import {Identitfiable} from '../interfaces/Identifiable';
 
 export const buildings  = (state: BuildingState = getInitialBuildingState(), action): BuildingState => {
     switch (action.type) {
@@ -28,7 +29,7 @@ export const buildings  = (state: BuildingState = getInitialBuildingState(), act
     }
 };
 
-const createBuildingFrom = (blueprint: Blueprint): Building => ({
+const createBuildingFrom = (blueprint: Blueprint): Identitfiable & Building => ({
     id: generateBuildingId(),
-    type: blueprint.type
+    ...blueprint.building
 });

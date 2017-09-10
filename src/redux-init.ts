@@ -4,11 +4,14 @@ import {applyMiddleware, combineReducers, createStore} from 'redux';
 import {buildings} from './reducers/buildings.reducer';
 import {resources} from './reducers/resources.reducer';
 import {composeWithDevTools} from 'redux-devtools-extension';
+import {game} from './state/game/game.reducer';
+import thunk from 'redux-thunk';
 
 export const createReduxApplicationStore = (initialState: ApplicationState): Store<ApplicationState> => {
     let reducers = combineReducers({
         buildings,
-        resources
+        resources,
+        game
     });
-    return createStore(reducers, initialState, composeWithDevTools(applyMiddleware())) as Store<ApplicationState>;
+    return createStore(reducers, initialState, composeWithDevTools(applyMiddleware(thunk))) as Store<ApplicationState>;
 };
