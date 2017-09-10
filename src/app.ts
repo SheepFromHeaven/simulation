@@ -1,6 +1,3 @@
-import 'pixi';
-import 'p2';
-import * as Phaser from 'phaser';
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import {getInitialState} from './state/state';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -14,43 +11,30 @@ import {Resource} from './interfaces/Resource';
 import {RESOURCE_TYPE} from './types/RESOURCE_TYPES';
 import {resources} from './reducers/resources.reducer';
 
-const start = (graphics: boolean) => {
+const start = () => {
     let reducers = combineReducers({
         buildings,
         resources
     });
     let store = createStore(reducers, getInitialState(), composeWithDevTools(applyMiddleware()));
-    let game;
-    if (graphics) {
-        game = new Phaser.Game(window.outerWidth, window.outerHeight, Phaser.AUTO, 'content', { preload: phaserPreload, create: phaserCreate });
-    }
 
-    fillInitialStorage(store, [{type: RESOURCE_TYPE.WOOD, amount: 100}]);
+    fillInitialStorage(store, [{type: RESOURCE_TYPE.WOOD, amount: 9}]);
     buildInitialBuildings(store, blueprints[BUILDING_TYPE.MAIN]);
 
-    startUpdateLoop(store, game, 1000);
+    startUpdateLoop(store, 1000);
 };
 
-const startUpdateLoop = (store, game: Phaser.Game, interval: number) => {
-    setInterval(update.bind(this, store, game), interval);
+
+const startUpdateLoop = (store, interval: number) => {
+    setInterval(update.bind(this, store), interval);
 };
 
-const update = (store, game: Phaser.Game) => {
-    document.getElementById('wood').innerText(store.getState().resources[RESOURCE_TYPE.WOOD].toString());
-};
-
-const phaserPreload = () => {
-
-};
-
-const phaserCreate = () => {
+const update = (store) => {
 
 };
 
 window.onload = () => {
-
-    start(false);
-
+    start();
 };
 
 const buildInitialBuildings = (store, blueprint: Blueprint) => {
