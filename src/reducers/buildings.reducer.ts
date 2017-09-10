@@ -1,21 +1,34 @@
 import {BUILDINGS_ACTIONS} from '../actions/buildings.actions';
-import {Building} from '../interfaces/Building';
+import {BuildingState, generateBuildingId, getInitialBuildingState} from '../state/BuildingState';
 import {Blueprint} from '../interfaces/Blueprint';
+import {Building} from '../interfaces/Building';
+import {dissoc, remove} from 'ramda';
 
-export const buildings  = (state: Building[] = [], action) => {
+export const buildings  = (state: BuildingState = getInitialBuildingState(), action): BuildingState => {
     switch (action.type) {
         case BUILDINGS_ACTIONS.ADD_BUILDING:
-            return [...state, newBuilding(state.length, action.payload.blueprint)];
+            const addingBuilding = createBuildingFrom(action.payload.blueprint);
+            return {
+                byId: {
+                    ...state.byId,
+                    [addingBuilding.id]: addingBuilding
+                },
+                all: [
+                    ...state.all,
+                    addingBuilding.id
+                ]
+            };
         case BUILDINGS_ACTIONS.REMOVE_BUILDING:
-            return state.filter(building => action.payload.id != building.id);
+            return {
+                byId: dissoc(action.payload.id, state.byId),
+                all: remove(state.all.indexOf(action.payload.id), 1, state.all)
+            };
         default:
             return state;
     }
 };
 
-const newBuilding = (id: number, blueprint: Blueprint) => {
-    return {
-        id: id,
-        type: blueprint.building.type
-    }
-};
+const createBuildingFrom = (blueprint: Blueprint): Building => ({
+    id: generateBuildingId(),
+    type: blueprint.type
+});

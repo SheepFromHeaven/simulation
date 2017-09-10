@@ -1,14 +1,14 @@
-import {Building} from '../interfaces/Building';
 import {getInitialResourceState, ResourceState} from './ResourceState';
+import {BuildingState, getInitialBuildingState} from './BuildingState';
 
 export interface ApplicationState {
-    buildings: Building[];
+    buildings: BuildingState;
     resources: ResourceState;
 }
 
 export const getInitialState = (): ApplicationState => {
     return {
-        buildings: [],
+        buildings: getInitialBuildingState(),
         resources: getInitialResourceState()
     }
 };

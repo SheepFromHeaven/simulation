@@ -14,7 +14,7 @@ export const addBuilding = (blueprint: Blueprint) => {
     }
 };
 
-export const removeBuilding = (id: number) => {
+export const removeBuilding = (id: string) => {
     return {
         type: BUILDINGS_ACTIONS.REMOVE_BUILDING,
         payload: {

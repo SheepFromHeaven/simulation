@@ -4,30 +4,38 @@ import {BUILDING_TYPE} from '../types/BUILDING_TYPES';
 import {addBuilding} from '../actions/buildings.actions';
 import {removeBuilding} from '../actions/buildings.actions';
 import {getInitialState} from '../state/state';
-import {blueprints} from '../blueprints';
+import {BLUEPRINTS} from '../blueprints';
+import {generateBuildingId, generateBuildingIdFromNumber, getInitialBuildingState} from '../state/BuildingState';
+import {Building} from '../interfaces/Building';
 
 describe('Building reducer', () => {
     it('handles initial state', () => {
-        expect(buildings(undefined, {})).to.deep.equal([]);
+        const resultingState = buildings(undefined, {});
+        expect(resultingState).to.deep.equal(getInitialBuildingState());
     });
 
     it('handles addBuilding action', () => {
-        expect(buildings(undefined, addBuilding(blueprints[BUILDING_TYPE.MAIN]))).to.deep.equal([
-            {
-                id: 0,
-                type: BUILDING_TYPE.MAIN
-            }
-        ]);
-    });
+        const initialState = getInitialBuildingState();
+        const action = addBuilding(BLUEPRINTS[BUILDING_TYPE.MAIN]);
 
-    it('increments building ids', () => {
-        let firstState = buildings(getInitialState().buildings, addBuilding(blueprints[BUILDING_TYPE.MAIN]));
-        expect(buildings(firstState, addBuilding(blueprints[BUILDING_TYPE.MAIN]))[1].id).to.deep.equal(1);
+        const returnedState = buildings(initialState, action);
+        const newBuildingId: string = returnedState.all[0];
+        const newBuilding = returnedState.byId[newBuildingId];
+
+        expect(returnedState.all).to.have.lengthOf(1);
+        expect(newBuilding.type).to.deep.equal(BUILDING_TYPE.MAIN);
     });
 
     it('handles removeBuilding action', () => {
-        let firstState = buildings(getInitialState().buildings, addBuilding(blueprints[BUILDING_TYPE.MAIN]));
-        let stateWithRemovedBuilding = buildings(firstState, removeBuilding(0));
-        expect(stateWithRemovedBuilding).to.deep.equal(getInitialState().buildings);
+        const initialState = getInitialBuildingState();
+        const addAction = addBuilding(BLUEPRINTS[BUILDING_TYPE.MAIN]);
+        const tempState = buildings(initialState, addAction);
+
+        const removeAction = removeBuilding(tempState.all[0]);
+
+        const returnedState = buildings(tempState, removeAction);
+
+        expect(returnedState.byId).to.be.empty;
+        expect(returnedState.all).to.be.empty;
     });
 });
