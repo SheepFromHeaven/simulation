@@ -5,6 +5,5 @@ environment.setAll({
     env: () => process.env.NODE_ENV || 'development'
 });
 
-// Also you may use `'conf/webpack.[NODE_ENV].config.js'`
-module.exports = new Config().extend('build/webpack.[env].config.js');
+module.exports = new Config().extend('config/webpack.[env].config.js');
 

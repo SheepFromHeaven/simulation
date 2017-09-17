@@ -3,7 +3,7 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 const path = require('path');
 const webpack = require('webpack');
 
-module.exports = new Config().extend('build/webpack.base.config.js').merge({
+module.exports = new Config().extend('config/webpack.base.config.js').merge({
     devtool: 'source-map',
     output: {
         pathinfo: true

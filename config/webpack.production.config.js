@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const Config = require('webpack-config').Config;
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-module.exports = new Config().extend('build/webpack.base.config.js').merge({
+module.exports = new Config().extend('config/webpack.base.config.js').merge({
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(true),
         new webpack.optimize.UglifyJsPlugin({
