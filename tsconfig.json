@@ -2,15 +2,14 @@
   "compileOnSave": false,
   "compilerOptions": {
     "module": "commonjs",
-    "noImplicitAny": false,
+    "allowJs": true,
     "removeComments": true,
-    "preserveConstEnums": true,
     "sourceMap": true,
     "typeRoots": [
-      "node_modules/@types",
-      "node_modules/phaser/typescript"
+      "node_modules/@types"
     ],
     "target": "es5",
-    "lib": ["es2016", "dom"]
+    "lib": ["ES6", "dom"],
+    "jsx": "react"
   }
 }
