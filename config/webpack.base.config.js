@@ -10,7 +10,7 @@ const extractSass = new ExtractTextPlugin({
 });
 
 module.exports = new Config().merge({
-    entry: './src/app.ts',
+    entry: './src/browser/app.ts',
     output: {
         path: path.resolve(__dirname, '../dist'),
         filename: 'main.js',
@@ -46,7 +46,7 @@ module.exports = new Config().merge({
     plugins: [
         extractSass,
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '../src/index.ejs'),
+            template: path.resolve(__dirname, '../src/browser/index.ejs'),
             inject: 'body'
         }),
         new webpack.optimize.CommonsChunkPlugin({

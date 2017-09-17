@@ -20,6 +20,7 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^2.30.1",
     "mocha": "^3.5.0",
+    "nodemon": "^1.12.1",
     "nyc": "^10.3.2",
     "phaser": "^2.6.2",
     "sass-loader": "^6.0.6",
@@ -35,7 +36,8 @@
     "webpack-dev-server": "^2.7.1"
   },
   "scripts": {
-    "start": "node node_modules/.bin/webpack-dev-server",
+    "start": "node node_modules/.bin/webpack-dashboard -- webpack-dev-server",
+    "start:server": "node node_modules/.bin/nodemon",
     "build": "node node_modules/.bin/webpack --config webpack.production.config.js",
     "test": "node node_modules/.bin/mocha --opts mocha.opts",
     "coverage": "node node_modules/.bin/nyc node_modules/.bin/mocha --opts mocha.opts"
