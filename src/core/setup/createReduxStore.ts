@@ -5,10 +5,10 @@ import {resources} from '../resources/resources.reducer';
 import {buildings} from '../buildings/buildings.reducer';
 import thunk from 'redux-thunk';
 
-export const createReduxStore = (initialState: ApplicationState): Store<ApplicationState> => {
+export const createReduxStore = (initialState: ApplicationState, middleware = []): Store<ApplicationState> => {
   const reducer = collectReducers();
-  const middleware = applyMiddleware(thunk);
-  return createStore(reducer, initialState, middleware);
+  const appliedMiddleware = applyMiddleware(thunk, ...middleware);
+  return createStore(reducer, initialState, appliedMiddleware);
 };
 
 interface AppReducer {
