@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Resource} from '../../../core/entities/Resource';
 import {ResourceAmount} from './ResourceAmount/ResourceAmount';
+import {Resource} from '../../../modules/resources/Resource';
 
 interface TopbarProps {
   resources: Resource[];

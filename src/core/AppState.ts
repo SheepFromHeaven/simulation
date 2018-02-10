@@ -1,17 +1,17 @@
-import {getInitialResourceState, ResourceState} from './resources/ResourceState';
-import {BuildingState, getInitialBuildingState} from './buildings/BuildingState';
-import {GameState, getInitialGameState} from './game/GameState';
+import {BuildingState, getInitialBuildingState} from '../modules/buildings/BuildingState';
+import {EngineState, getInitialEngineState} from './engine/EngineState';
+import {getInitialResourceState, ResourceState} from '../modules/resources/ResourceState';
 
 export interface ApplicationState {
   buildings: BuildingState;
   resources: ResourceState;
-  game: GameState;
+  engine: EngineState;
 }
 
 export const getInitialState = (): ApplicationState => {
   return {
     buildings: getInitialBuildingState(),
     resources: getInitialResourceState(),
-    game: getInitialGameState()
+    engine: getInitialEngineState()
   };
 };

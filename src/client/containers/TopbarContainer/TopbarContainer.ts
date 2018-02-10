@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {Topbar} from '../../components/Topbar/Topbar';
 import {ApplicationState} from '../../../core/AppState';
-import {getAllResources} from '../../../core/resources/ResourceState';
+import {getAllResources} from '../../../modules/resources/ResourceState';
 
 export const mapStateToProps = (state: ApplicationState, props) => {
   return {

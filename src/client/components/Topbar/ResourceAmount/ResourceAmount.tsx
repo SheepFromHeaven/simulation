@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Resource} from '../../../../core/entities/Resource';
+import {Resource} from '../../../../modules/resources/Resource';
 
 interface ResourceAmountProps {
   resource: Resource

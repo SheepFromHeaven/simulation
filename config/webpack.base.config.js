@@ -10,7 +10,7 @@ const extractSass = new ExtractTextPlugin({
 });
 
 module.exports = new Config().merge({
-    entry: './src/browser/app.ts',
+    entry: './src/client/app.ts',
     output: {
         path: path.resolve(__dirname, '../dist'),
         filename: 'main.js',
@@ -29,12 +29,12 @@ module.exports = new Config().merge({
                 test: /\.scss$/,
                 use: extractSass.extract({
                     use: [{
-                        loader: "css-loader"
+                        loader: 'css-loader'
                     }, {
-                        loader: "sass-loader"
+                        loader: 'sass-loader'
                     }],
                     // use style-loader in development
-                    fallback: "style-loader"
+                    fallback: 'style-loader'
                 })
             },
             {
@@ -46,7 +46,7 @@ module.exports = new Config().merge({
     plugins: [
         extractSass,
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '../src/browser/index.ejs'),
+            template: path.resolve(__dirname, '../src/client/index.ejs'),
             inject: 'body'
         }),
         new webpack.optimize.CommonsChunkPlugin({
