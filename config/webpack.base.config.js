@@ -6,56 +6,59 @@ const webpack = require('webpack');
 const path = require('path');
 
 const extractSass = new ExtractTextPlugin({
-    filename: '[name].[contenthash].css',
+  filename: '[name].[contenthash].css'
 });
 
 module.exports = new Config().merge({
-    entry: './src/client/app.ts',
-    output: {
-        path: path.resolve(__dirname, '../dist'),
-        filename: 'main.js',
-        publicPath: '/'
-    },
-    resolve: {
-        modules: [
-            'node_modules',
-            path.resolve(__dirname, 'src')
-        ],
-        extensions: ['.tsx', '.ts', '.js']
-    },
-    module: {
-        rules: [
-            {
-                test: /\.scss$/,
-                use: extractSass.extract({
-                    use: [{
-                        loader: 'css-loader'
-                    }, {
-                        loader: 'sass-loader'
-                    }],
-                    // use style-loader in development
-                    fallback: 'style-loader'
-                })
-            },
-            {
-                test: /\.(ts|tsx)$/,
-                loader: 'awesome-typescript-loader',
-            }
-        ]
-    },
-    plugins: [
-        extractSass,
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '../src/client/index.ejs'),
-            inject: 'body'
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'node-static',
-            filename: 'node-static.js',
-            minChunks: function(module, count) {
-                let context = module.context;
-                return context && context.indexOf('node_modules') >= 0;
-            }
+  entry: {
+    resources: './src/modules/resources/index.ts',
+    main: './src/client/app.ts'
+  },
+  output: {
+    path: path.resolve(__dirname, '../dist'),
+    filename: '[name].js',
+    publicPath: '/'
+  },
+  resolve: {
+    modules: [
+      'node_modules',
+      path.resolve(__dirname, 'src')
+    ],
+    extensions: ['.tsx', '.ts', '.js']
+  },
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: extractSass.extract({
+          use: [{
+            loader: 'css-loader'
+          }, {
+            loader: 'sass-loader'
+          }],
+          // use style-loader in development
+          fallback: 'style-loader'
         })
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        loader: 'awesome-typescript-loader'
+      }
     ]
+  },
+  plugins: [
+    extractSass,
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '../src/client/index.ejs'),
+      inject: 'body'
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'node-static',
+      filename: 'node-static.js',
+      minChunks: function (module, count) {
+        let context = module.context;
+        return context && context.indexOf('node_modules') >= 0;
+      }
+    })
+  ]
 });

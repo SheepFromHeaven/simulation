@@ -1,7 +1,7 @@
+import {Store} from 'react-redux';
 import {ApplicationState} from '../core/AppState';
 import {initReactApp} from './react-init';
 import {createReduxApplicationStore} from '../core/store/redux-init';
-import {Store} from 'react-redux';
 import {increaseTick, startEngine} from '../core/engine/engine.actions';
 import {gameConfig} from '../core/gameConfig';
 import {SimulationModule} from '../SimulationModule';
