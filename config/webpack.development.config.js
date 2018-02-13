@@ -22,6 +22,7 @@ module.exports = new Config().extend('config/webpack.base.config.js').merge({
   devServer: {
     compress: true,
     port: 9000,
-    hot: true
+    hot: true,
+    disableHostCheck: true
   }
 });
