@@ -11,8 +11,9 @@ const extractSass = new ExtractTextPlugin({
 
 module.exports = new Config().merge({
   entry: {
+    main: './src/client/app.ts',
     resources: './src/modules/resources/index.ts',
-    main: './src/client/app.ts'
+    buildings: './src/modules/buildings/index.ts',
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
