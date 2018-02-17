@@ -1,11 +1,13 @@
 import {Store} from 'react-redux';
 import {ApplicationState} from '../core/AppState';
-import {initReactApp} from './react-init';
 import {createReduxApplicationStore} from '../core/store/redux-init';
 import {increaseTick, startEngine} from '../core/engine/engine.actions';
 import {gameConfig} from '../core/gameConfig';
 import {SimulationModule} from '../SimulationModule';
 import {createAppModules} from './createAppModules';
+import {createUiOnElementWitId} from './createUi';
+import {BLUEPRINTS} from '../settings/blueprints';
+import {BUILDING_TYPE} from '../modules/buildings/constants/BUILDING_TYPES';
 
 
 const start = () => {
@@ -13,11 +15,17 @@ const start = () => {
 
   const store = createReduxApplicationStore(modules);
 
-  initReactApp('react-app', store);
+  createUiOnElementWitId('app-ui', store);
 
   startUpdateLoop(createTickCallback(store, modules), gameConfig.tickInterval);
 
   store.dispatch(startEngine());
+
+  const actions = modules.reduce((previousValue, currentModue) => ({
+    ...previousValue,
+    ...currentModue.actions
+  }), {});
+  store.dispatch(actions['buildBuilding'](BLUEPRINTS[BUILDING_TYPE.WOODCUTTER]));
 };
 
 const startUpdateLoop = (tick: Function, interval: number) => {
